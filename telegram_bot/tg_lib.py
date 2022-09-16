@@ -215,7 +215,7 @@ def show_end_poll_message(bot, chat_id):
 
 
 def read_poll_questions():
-    with open('questions_to_clients.txt', 'r') as file_handler:
+    with open('questions_to_clients.txt', 'r', encoding='UTF-8') as file_handler:
         poll_questions = json.load(file_handler)
     return poll_questions
 

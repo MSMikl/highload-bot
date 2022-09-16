@@ -88,6 +88,7 @@ class PlayerAdmin(ImportExportModelAdmin):
         'created_at',
         'bot_state',
         'exclude_from_export',
+        'current_competition',
     ]
 
 
@@ -119,6 +120,8 @@ class DrawAdmin(admin.ModelAdmin):
                     'end_at',
                     'get_status_draw',
                     ]
+
+    list_filter = (DrawFilter,)
 
     def get_status_draw(self, obj):
         states_colors = {

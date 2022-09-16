@@ -155,6 +155,7 @@ def handle_auth(bot, update, context):
         phone_number = update.message.contact.phone_number
         if phone_number and phonenumbers.is_valid_number(phonenumbers.parse(phone_number, 'RU')):
             user.phone_number = phone_number
+            user.created_at = now()
             user.save()
             bot.send_message(
                 chat_id=chat_id,
