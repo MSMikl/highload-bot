@@ -73,19 +73,21 @@ def show_rebus(bot, chat_id, current_rebus, description=''):
         one_time_keyboard=False, row_width=1, resize_keyboard=True
     )
     
-    if requests.get(current_rebus.image.url).ok:
-        # for production server
+    # if requests.get(current_rebus.image.url).ok:
+    #     print(current_rebus.image.url)
+    #     # for production server
+    #     bot.send_photo(
+    #         chat_id=chat_id, photo=image.url, reply_markup=reply_markup,
+    #         caption=' '.join([item for item in (current_rebus.text, description) if item])
+    #     )
+    # else:
+    #     # for localhost
+    with open(current_rebus.image.path, 'rb') as image:
+        print(current_rebus.image.path)
         bot.send_photo(
-            chat_id=chat_id, photo=image.url, reply_markup=reply_markup,
+            chat_id=chat_id, photo=image, reply_markup=reply_markup,
             caption=' '.join([item for item in (current_rebus.text, description) if item])
         )
-    else:
-        # for localhost
-        with open(current_rebus.image.path, 'rb') as image:
-            bot.send_photo(
-                chat_id=chat_id, photo=image, reply_markup=reply_markup,
-                caption=' '.join([item for item in (current_rebus.text, description) if item])
-            )
 
 
 def show_hint(bot, chat_id, current_rebus, description=''):
